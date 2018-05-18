@@ -1,0 +1,17 @@
+{{ define "title" }}Admigo{{ end }}
+{{ define "content" }}
+<section class="hero is-success is-large">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+        <div class="notification is-success is-size-4">
+          To view this page You need to
+          <p class="tp-13">
+            <a href="#1" onclick="vm_auth.login(); return false;">Login</a>
+            or
+            <a href="#2" onclick="vm_auth.register(); return false;">Register</a>
+          </p>
+        </div>
+    </div>
+  </div>
+</section>
+{{ end }}

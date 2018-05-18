@@ -1,0 +1,85 @@
+{
+    "sidebar": [
+        {
+            "items": [
+                {
+                    "icon": "fas fa-home",
+                    "label": "Home",
+                    "tag": "home",
+                    "url": "/"
+                },
+                {
+                    "icon": "fas fa-sliders-h",
+                    "items": [
+                        {
+                            "icon": "fas fa-users",
+                            "label": "Users",
+                            "tag": "users",
+                            "url": "/users"
+                        },
+                        {
+                            "icon": "fas fa-archive",
+                            "label": "Items",
+                            "tag": "items",
+                            "url": "/items"
+                        }
+                    ],
+                    "label": "Dashboard"
+                }
+            ],
+            "title": "Main"
+        },
+        {
+            "items": [
+                {
+                    "items": [
+                        {
+                            "label": "Shopping",
+                            "icon": "fas fa-shopping-cart",
+                            "url": "/shopping",
+                            "tag": "shopping"
+                        },
+                        {
+                            "label": "Admigo ICO",
+                            "icon": "fas fa-share-alt",
+                            "url": "/ico",
+                            "tag": "ico"
+                        }
+                    ],
+                    "label": "Smart Contracts",
+                    "icon": "far fa-clone"
+                },
+                {
+                    "items": [
+                        {
+                            "icon": "fab fa-btc",
+                            "label": "Bitcoin",
+                            "url": "/btc",
+                            "tag": "btc"
+                        },
+                        {
+                            "label": "Ethereum",
+                            "icon": "fab fa-ethereum",
+                            "url": "/eth",
+                            "tag": "eth"
+                        }
+                    ],
+                    "label": "Crypto Charts",
+                    "icon": "fas fa-chart-area"
+                }
+            ],
+            "title": "Crypto"
+        },
+        {
+            "title": "Mobile",
+            "items": [
+                {
+                    "label": "Android",
+                    "icon": "fab fa-android",
+                    "url": "/app",
+                    "tag": "app"
+                }
+            ]
+        }
+    ]
+}

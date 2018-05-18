@@ -1,0 +1,11 @@
+{
+    "confirmed": "The %s confirmation does not match.",
+    "regfin": "To finish the registration, please visit to your mail",
+    "required": "The %s field is required.",
+    "email_not_found": "The Email not found",
+    "incorrect_password": "Incorrect Password",
+    "welcome_logged": "Welcome to Admigo",
+    "user_not_found": "The user with this Email not found, please Signin again",
+    "insuf_rights":  "Insufficient rights",
+    "user_not_confirm": "User was not confirmed"
+}

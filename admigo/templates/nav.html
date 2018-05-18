@@ -1,0 +1,57 @@
+{{ define "navbar" }}
+<nav class="navbar top-navbar" role="navigation" aria-label="main navigation" id="auth">
+  <div class="navbar-brand">
+    <a class="navbar-item is-paddingless is-hidden-tablet" @click="sidebar">
+      <span class="icon is-large">
+        <i class="fa fa-bars"></i>
+      </span>
+      <span>Sidebar</span>
+    </a>
+    <div class="navbar-burger burger" :class="{'is-active': isActiveMenu}" @click="isActiveMenu = !isActiveMenu">
+      <div class="icon is-large">
+        <i class="fas fa-sign-in-alt"></i>
+      </div>
+    </div>
+  </div>
+  <div class="navbar-menu" :class="{'is-active': isActiveMenu}">
+    <div class="navbar-end">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link is-hidden-mobile">
+          {{ if (index . "logged") }}
+            <span>Welcome {{ (index . "logged").Role.Name }}</span>
+          {{ else }}
+            <span>not logged</span>
+          {{ end }}
+          <span class="icon is-large">
+            <i class="fas fa-sign-in-alt"></i>
+          </span>
+        </a>
+        <div class="navbar-dropdown is-boxed is-right">
+          <a href="/login" class="navbar-item" @click.prevent="login">
+            <span class="icon is-large">
+              <i class="fas fa-unlock-alt"></i>
+            </span>
+            <span>Login</span>
+          </a>
+          <a href="/logout" class="navbar-item" @click.prevent="logout">
+            <span class="icon is-large">
+              <i class="fas fa-lock"></i>
+            </span>
+            <span>Logout</span>
+          </a>
+          <hr class="navbar-divider">
+          <a href="/signin" class="navbar-item" @click.prevent="register">
+            <span class="icon is-large">
+              <i class="fas fa-sign-in-alt"></i>
+            </span>
+            <span>Register</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <modal-login v-if="isLogin" @close="hideLogin" @user-logged="userLogged"></modal-login>
+  <modal-register v-if="isRegister" @close="hideRegister" @user-created="userCreated"></modal-register>
+  <message v-show="flash">${ textMessage }</message>
+</nav>
+{{ end }}

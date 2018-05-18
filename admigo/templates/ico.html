@@ -1,0 +1,96 @@
+{{ define "title" }}Admigo ICO{{ end }}
+
+{{ define "content" }}
+  <div id="ico">
+    <section class="hero is-info is-clipped">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Admigo ICO
+          </h1>
+          <h2 class="subtitle">
+            This is an example of an ICO, was uploaded on the <a :href="ropsten" class="rop">Ropsten.</a><br />
+            You can buy tokens like an investor.<br />
+            Let's try this...
+          </h2>
+
+          <h2 class="subtitle" v-if="noWeb3" v-cloak>
+            But at the begining please install <a class="metamask" href="https://metamask.io" target="_blank">MetaMask</a>
+          </h2>
+        </div>
+      </div>
+    </section>
+    <section class="ico-grid">
+      <div class="left">
+        <div class="title is-4 has-text-centered">
+          Investor
+        </div>
+        <investor
+          :wallet="choosen_wallet.wallet"
+          :eth="choosen_wallet.eth"
+          :tokens="choosen_wallet.tokens"
+          :nowal="noWallet"
+          @on-buy="investorBuy"
+        >
+        </investor>
+      </div>
+
+      <div class="contract-cont">
+        <div class="title is-4 has-text-centered">Admigo Crowdsale</div>
+        <div class="contract itm">
+          <div class="ico-wallet" v-cloak>
+            ${ ico.address }
+          </div>
+          <div id="tm-ico-container">
+            <span class="am-label">Duration</span>
+            <span class="tm-ico">
+              ${ ico.openingTime }
+            </span>
+            <span class="tm-ico">
+              ${ ico.closingTime }
+            </span>
+          </div>
+          <div class="ico-amounts is-clearfix">
+            <span class="am-label">
+              Raised
+            </span>
+            <span class="am-val" v-cloak>
+              ${ ico.raised }
+            </span>
+            <span class="ed">Ether</span>
+          </div>
+          <div class="ico-amounts is-clearfix">
+            <span class="am-label">
+              Total Supply
+            </span>
+            <span class="am-val" v-cloak>
+              ${ token.total }
+            </span>
+            <span class="ed">ATOKA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="title is-4">
+          Events log
+        </div>
+        <div id="events-log">
+          <div v-for="ev in revEvs" v-cloak>
+            ${ ev }
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{{ end }}
+
+{{ define "styles" }}
+  <link rel="stylesheet" type="text/css" href="/static/css/ico.css" />
+{{ end }}
+
+{{ define "scripts" }}
+  <script src="/static/js/smart/web3.min.js"></script>
+  <script src="/static/js/smart/truffle-contract.min.js"></script>
+  <script src="/static/js/ico.js"></script>
+{{ end }}

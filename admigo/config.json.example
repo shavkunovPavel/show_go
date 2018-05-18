@@ -1,0 +1,39 @@
+{
+  "lang": "en",
+  "debug": false,
+  "address": "admigo.life",
+  "port": 443,
+  "db": {
+    "dbname": "database",
+    "driver": "postgres",
+    "password": "pass",
+    "sslmode": "disable",
+    "user": "postgres"
+  },
+  "mail": {
+    "from": "user_name@domain.com",
+    "host": "smtp.domain.ru",
+    "password": "pass",
+    "port": 465,
+    "username": "user_name@domain.com",
+    "gotourl": "https://admigo.life"
+  },
+  "readTimeout": 10,
+  "writeTimeout": 120,
+  "idleTimeout": 120,
+  "static": "static",
+  "redirects": [
+    {
+      "prefix": "alb",
+      "protocol": "http",
+      "req_uri": "alb",
+      "port": 7777
+    },
+    {
+      "prefix": "respupr",
+      "protocol": "http",
+      "req_uri": "respupr",
+      "port": 7777
+    }
+  ]
+}

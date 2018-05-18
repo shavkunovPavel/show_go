@@ -1,0 +1,35 @@
+{{ define "title" }}Users{{ end }}
+
+{{ define "content" }}
+{{ $user := (index . "logged") }}
+<section id="d-grid" class="content-wrapper">
+  <data-grid
+    :entrys="gridData"
+    :columns="gridColumns"
+    @header-click="hClick"
+    @pager-click="pClick"
+    @search="searchUser"
+    :pages="form.query"
+    :loading="user_loading"
+    {{ if $user.CanWrite }}
+      @edit="editUser"
+      addtext="Add User"
+    {{ end }}
+    >
+  </data-grid>
+
+  {{ if $user.CanWrite }}
+    <user-editor v-if="showUserEditor"
+      :user="userId"
+      :admin="{{ $user.IsAdmin }}"
+      @close="userEditorClose"
+      @close-error="userEditorCloseError"
+      @updated="userUpdated"
+    ></user-editor>
+  {{ end }}
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+  <script src="/static/js/users.js"></script>
+{{ end }}

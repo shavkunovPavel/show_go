@@ -1,0 +1,12 @@
+{{ define "title" }}Error{{ end }}
+{{ define "content" }}
+<section class="section">
+  <div class="notification is-danger">
+    <ul>
+      {{ range .msgs }}
+      <li>{{ . }}</li>
+      {{ end}}
+    </ul>
+  </div>
+</section>
+{{ end }}

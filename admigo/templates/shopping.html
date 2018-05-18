@@ -1,0 +1,153 @@
+{{ define "title" }}Shopping{{ end }}
+
+{{ define "content" }}
+  {{ $user := (index . "logged") }}
+  <div id="shop">
+    <section class="hero is-info is-clipped">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Admigo shopping
+          </h1>
+          <h2 class="subtitle">
+            This is an example of a shop, based on smart contract deployed on the <a :href="ropsten" class="rop">Ropsten.</a><br />
+            You can buy something, then confirm or cancel the purchase.<br />
+            Let's try this...
+          </h2>
+          <h2 class="subtitle" v-if="noWeb3" v-cloak>
+            But at the begining please install <a class="metamask" href="https://metamask.io" target="_blank">MetaMask</a>
+          </h2>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="columns" id="balance-container">
+        <div class="column is-one-third">
+          <div id="user-container">
+            <div class="container-info">
+              <div class="title is-4">
+                Your wallet
+              </div>
+
+              <div id="user-select-cont">
+                <span class="y-wallet">
+                  ${ choosen_wallet.wallet }
+                </span>
+                <span v-if="noWallet" class="unlock" v-cloak>
+                  Please unlock your account in <a class="metamask" href="https://metamask.io" target="_blank">MetaMask</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="bal-info-container">
+              <div class="bal-info is-clearfix">
+                <span class="bal-info-text">
+                  Latest balance
+                </span>
+                <span class="bal-info-val" v-cloak>
+                  ${ choosen_wallet.balance }
+                  <i>Ether</i>
+                </span>
+              </div>
+              <div class="bal-info is-clearfix">
+                <span class="bal-info-text">
+                  Unconfirmed sum
+                </span>
+                <span class="bal-info-val" v-cloak>
+                  ${ choosen_wallet.smart_balance }
+                  <i>Ether</i>
+                </span>
+              </div>
+              <div class="bal-info is-clearfix">
+                <span class="bal-info-text">
+                  Unconfirmed item
+                </span>
+                <span class="bal-info-val" v-cloak>
+                  ${ choosen_wallet.item.nm }
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div id="smart-container">
+            <div class="container-info">
+              <div class="title is-4">
+                Smart Contract
+              </div>
+              <div id="smart-addr" v-cloak>
+                <div class="smart-addr-item is-clearfix">
+                  <span class="smt">Contract:</span>
+                  <span class="sma">${ shopper.address }</span>
+                </div>
+                <div class="smart-addr-item is-clearfix">
+                  <span class="smt">Owner:</span>
+                  <span class="sma">${ shopper.owner }</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bal-info-container">
+              <div class="bal-info is-clearfix">
+                <span class="bal-info-text">
+                  Latest balance
+                </span>
+                <span class="bal-info-val" v-cloak>
+                  ${ shopper.balance }
+                  <i>Ether</i>
+                </span>
+              </div>
+              <div class="bal-info is-clearfix">
+                <span class="bal-info-text">
+                  Reserved sum
+                </span>
+                <span class="bal-info-val" v-cloak>
+                  ${ shopper.reserved }
+                  <i>Ether</i>
+                </span>
+              </div>
+              <div class="bal-info is-clearfix">
+                <span class="bal-info-text">
+                  Can withdraw
+                </span>
+                <span class="bal-info-val" v-cloak>
+                  ${ shopper.canwithdraw }
+                  <i>Ether</i>
+                </span>
+              </div>
+            </div>
+            <div class="with-money">
+              <button class="button is-warning" @click="withdraw">
+                <span class="icon">
+                  <i class="fa fa-download"></i>
+                </span>
+                <span>Withdraw Ether</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="title is-4">
+            Events log
+          </div>
+          <div id="events-log">
+            <div v-for="ev in revEvs">
+              ${ ev }
+            </div>
+          </div>
+        </div>
+      </div>
+      <items :item="choosen_wallet.item.id" @buy="buy" @confirm="confirm" @cancel="cancel"></items>
+    </section>
+  </div>
+{{ end }}
+
+{{ define "styles" }}
+  <link rel="stylesheet" type="text/css" href="/static/css/shopping.css" />
+{{ end }}
+
+{{ define "scripts" }}
+  <script src="/static/js/smart/web3.min.js"></script>
+  <script src="/static/js/smart/truffle-contract.min.js"></script>
+  <script src="/static/js/shopping.js"></script>
+{{ end }}
